@@ -41,10 +41,10 @@ public class PrefixMatches {
     }
 
     public Iterable<String> wordsWithPrefix(String pref) {
-        if (pref.length() >= 2) {
-            return trie.wordsWithPrefix(pref);
+        if (pref.length() < 2) {
+            throw new IllegalArgumentException();
         }
-        return null;
+        return trie.wordsWithPrefix(pref);
     }
 
     public Iterable<String> wordsWithPrefix(String pref, int k) {

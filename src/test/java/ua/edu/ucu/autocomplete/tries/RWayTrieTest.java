@@ -31,10 +31,11 @@ public class RWayTrieTest {
         tree.add(new Tuple("abcd", 4));
         tree.add(new Tuple("abcde", 5));
 
-        tree.delete("abcd");
-        boolean actualResult = tree.contains("abcd");
+        boolean actualResultFirstTest = tree.delete("abcd");
+        boolean actualResultSecondTest = tree.delete("haha");
 
-        assertFalse(actualResult);
+        assertTrue(actualResultFirstTest);
+        assertFalse(actualResultSecondTest);
     }
 
     @Test
