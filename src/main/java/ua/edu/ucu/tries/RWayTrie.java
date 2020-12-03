@@ -1,6 +1,6 @@
 package ua.edu.ucu.tries;
 
-import ua.edu.ucu.additional_structures.Queue;
+import ua.edu.ucu.queue.Queue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +17,20 @@ public class RWayTrie implements Trie {
 
     private Node put(Node x, String key, int val, int d) {
         // Change value associated with key if in subtrie rooted at x.
+        Node xCopy;
         if (x == null) {
-            x = new Node();
+            xCopy = new Node();
+        } else {
+            xCopy = x;
         }
+
         if (d == key.length()) {
-            x.val = val;
-            return x;
+            xCopy.val = val;
+            return xCopy;
         }
         char c = key.charAt(d); // Use dth key char to identify subtrie.
-        x.next[c] = put(x.next[c], key, val, d + 1);
-        return x;
+        xCopy.next[c] = put(xCopy.next[c], key, val, d + 1);
+        return xCopy;
     }
 
     @Override
@@ -63,10 +67,11 @@ public class RWayTrie implements Trie {
             return x;
         }
 
-        for (char c = 0; c < R; c++)
+        for (char c = 0; c < R; c++) {
             if (x.next[c] != null) {
                 return x;
             }
+        }
         return null;
     }
 
@@ -98,8 +103,9 @@ public class RWayTrie implements Trie {
             q.enqueue(pre);
         }
 
-        for (char c = 0; c < R; c++)
+        for (char c = 0; c < R; c++) {
             collect(x.next[c], pre + c, q);
+        }
     }
 
     private Node get(Node x, String key, int d) {
@@ -126,8 +132,9 @@ public class RWayTrie implements Trie {
         if (x.val != null) {
             cnt++;
         }
-        for (char c = 0; c < R; c++)
+        for (char c = 0; c < R; c++) {
             cnt += size(x.next[c]);
+        }
         return cnt;
     }
 

@@ -1,4 +1,4 @@
-package ua.edu.ucu.additional_structures;
+package ua.edu.ucu.queue;
 
 import java.util.Arrays;
 
