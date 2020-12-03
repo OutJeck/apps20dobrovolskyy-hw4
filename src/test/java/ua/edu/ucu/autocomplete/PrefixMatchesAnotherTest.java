@@ -46,7 +46,7 @@ public class PrefixMatchesAnotherTest {
         String pref = "ab";
 
         PrefixMatches testPm = new PrefixMatches(new RWayTrie());
-        testPm.load("abc", "abc", "abc");
+        testPm.load("abc abc", "abc", "abc", "ab");
 
         Iterable<String> result = testPm.wordsWithPrefix(pref);
 
